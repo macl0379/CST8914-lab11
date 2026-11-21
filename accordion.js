@@ -9,22 +9,26 @@
   6. If the accordion is closed we set the max-height of the currently hidden text inside the accordion from 0 to the scroll height of the content inside the accordion. The scroll height refers to the height of an html element in pixels. For this specific example, we are talking about the height of the div with the class accordion-content with all of its nested ptags
 */
 
-const accordionBtns = document.querySelectorAll(".accordion");
+const accordionBtns = document.querySelectorAll("h2 .accordion");
 
 accordionBtns.forEach((accordion) => {
   accordion.onclick = function () {
     this.classList.toggle("is-open");
-
-    let content = this.nextElementSibling;
+    // let content2 be the associated content of the accordion which is outside the h2 which wraps arround the button
+    let content = this.parentElement.nextElementSibling;
     console.log(content);
 
     if (content.style.maxHeight) {
       //this is if the accordion is open
       content.style.maxHeight = null;
+      // change the aria-expanded attribute to false when the accordion is closed
+      this.setAttribute("aria-expanded", "false");
     } else {
       //if the accordion is currently closed
       content.style.maxHeight = content.scrollHeight + "px";
       console.log(content.style.maxHeight);
+      // change the aria-expanded attribute to true when the accordion is open
+      this.setAttribute("aria-expanded", "true");
     }
   };
 });

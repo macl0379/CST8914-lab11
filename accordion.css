@@ -1,10 +1,14 @@
-/* body {
+body {
 	background-color: #6DC4F4;
 }h1 { 
      color:white;
  
-} */
+}
 
+/* remove margin for h2 to give intended look for the accordion buttons */
+h2{
+  margin: 0;
+}
 .container {
   width: 80%;
   max-width: 600px;
